@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<style>
+.time_tracker_box {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    background-color: #a6c4dc;
+    width: 400px;
+    height: 400px;
+    display: table;
+    border-radius: 10px;
+}
+.time_tracker_box .middle{
+    display: table-cell;
+    vertical-align: middle;
+    height: 100%;
+}
+.time_tracker_box .middle h1 {
+    font-size: 50px;
+    color: #ffffff;
+}
+.time_tracker_box .close{
+    cursor: pointer;
+    color: #ffffff;
+    border: 1px solid #b9cddd;
+    position: absolute;
+    right: -1px;
+    height: 20px;
+    width: 20px;
+    border-radius: 10px;
+    top: -1px;
+    background-color: #a6c4dc;
+	line-height: 15px;
+}
+@media only screen and (max-width: 768px) { 
+	.time_tracker_box {
+		width: 300px;
+		height: 300px;
+	}
+}
+</style>
+<body>
+
+<div class="time_tracker_box">
+	<div class="close">x</div>
+  <div class="middle">
+	<h1 id="time_tracker"></h1>
+  </div>
+</div>
+
+<script>
+// Set the date we're counting down to
+var countDownDate = new Date("Nov 21, 2021 15:00:00").getTime();
+
+// Update the count down every 1 second
+var countdownfunction = setInterval(function() {
+
+  // Get todays date and time
+  var now = new Date().getTime();
+  
+  // Find the distance between now an the count down date
+  var distance = countDownDate - now;
+  
+  // Time calculations for days, hours, minutes and seconds
+  var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+	  days = days < 10?'0'+ days : days;
+  var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      hours = hours < 10?'0'+ hours : hours;
+  var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+	  minutes = minutes < 10?'0'+ minutes : minutes;
+  var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+	  seconds = seconds < 10?'0'+ seconds : seconds;
+  
+  // Output the result in an element with id="demo"
+  document.getElementById("time_tracker").innerHTML = days +" : "+ hours + " : "
+  + minutes + " : " + seconds ;
+  
+  // If the count down is over, write some text 
+  if (distance < 0) {
+    clearInterval(countdownfunction);
+    document.getElementById("time_tracker").innerHTML = "EXPIRED";
+  }
+}, 1000);
+$('.time_tracker_box .close').on('click', function(){
+	alert();
+});
+</script>
+
+</body>
+</html>
