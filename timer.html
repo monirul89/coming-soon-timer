@@ -84,9 +84,18 @@ var countdownfunction = setInterval(function() {
     document.getElementById("time_tracker").innerHTML = "EXPIRED";
   }
 }, 1000);
-$('.time_tracker_box .close').on('click', function(){
-	alert();
-});
+    // Tracker popup
+    setTimeout(function () {
+        $(".time_tracker_box").fadeIn();
+    }, 8000);
+
+    // setTimeout(function () {
+    //     $(".popup-container").fadeOut();
+    // }, 70000);
+
+    $(document).on('click', '.time_tracker_box .tracker_close', function () {
+        $(".time_tracker_box").fadeOut();
+    });
 </script>
 
 </body>
